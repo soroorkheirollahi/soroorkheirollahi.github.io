@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soroor Kheirollahi — Visual Artist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #737373;
+      --border: #eaeaea;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 48px;
+    }
+    h1 {
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text); }
+    
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+    .art-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .art-card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      background-color: #f5f5f5;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+    .art-card img:hover { opacity: 0.9; }
+    .art-info {
+      margin-top: 12px;
+    }
+    .art-title {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .art-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* Section Styling */
+    section {
+      border-top: 1px solid var(--border);
+      padding-top: 48px;
+      margin-top: 48px;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .about-content, .cv-content {
+      max-width: 700px;
+      color: #333;
+    }
+    .cv-item {
+      margin-bottom: 16px;
+    }
+    .cv-date {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Soroor Kheirollahi</h1>
+    <nav>
+      <a href="#works">Selected Works</a>
+      <a href="#about">About</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Gallery -->
+    <section id="works" style="border-top: none; padding-top: 0; margin-top: 0;">
+      <div class="gallery-grid">
+        
+        <!-- Artwork Item 1 -->
+        <div class="art-card">
+          <img src="images/art1.jpg" alt="Artwork 1" onerror="this.src='https://via.placeholder.com/600x800?text=Artwork+1'">
+          <div class="art-info">
+            <div class="art-title">Untitled (Surreal Series)</div>
+            <div class="art-meta">Oil on Canvas, 100 × 80 cm, 2024</div>
+          </div>
+        </div>
+
+        <!-- Artwork Item 2 -->
+        <div class="art-card">
+          <img src="images/art2.jpg" alt="Artwork 2" onerror="this.src='https://via.placeholder.com/600x800?text=Artwork+2'">
+          <div class="art-info">
+            <div class="art-title">Silence Within</div>
+            <div class="art-meta">Acrylic on Canvas, 120 × 90 cm, 2023</div>
+          </div>
+        </div>
+
+        <!-- Artwork Item 3 -->
+        <div class="art-card">
+          <img src="images/art3.jpg" alt="Artwork 3" onerror="this.src='https://via.placeholder.com/600x800?text=Artwork+3'">
+          <div class="art-info">
+            <div class="art-title">Metamorphosis</div>
+            <div class="art-meta">Mixed Media on Canvas, 80 × 80 cm, 2022</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2>About & Statement</h2>
+      <div class="about-content">
+        <p>Soroor Kheirollahi is a contemporary Iranian painter working within the visual language of Surrealism. Her paintings explore inner psychological landscapes, identity, and the poetic tension between memory and subconscious forms.</p>
+        <p style="margin-top: 12px;">She holds a Bachelor of Fine Arts (BFA) in Painting from Islamic Azad University, Abadan Branch, and currently lives and works in Mahshahr, Iran.</p>
+      </div>
+    </section>
+
+    <!-- CV Overview -->
+    <section id="cv">
+      <h2>Curriculum Vitae</h2>
+      <div class="cv-content">
+        <h3 style="font-size: 1rem; margin: 16px 0 10px;">Selected Exhibitions</h3>
+        <div class="cv-item">
+          <span class="cv-date">2025</span> — <em>Four Seasons of Art 4</em>, Pooneh Gallery, Ahvaz, Iran
+        </div>
+        <div class="cv-item">
+          <span class="cv-date">2024</span> — Recycling Art Festival, Mahshahr, Iran
+        </div>
+        <div class="cv-item">
+          <span class="cv-date">2020</span> — 12th Fajr International Festival of Visual Arts, Tehran, Iran
+        </div>
+        <div class="cv-item">
+          <span class="cv-date">2019</span> — <em>Hes</em> Group Exhibition, Ahvaz, Iran
+        </div>
+        <div class="cv-item">
+          <span class="cv-date">2019</span> — Environmental Art Exhibition, Persian Gulf Museum, Kish Island, Iran
+        </div>
+
+        <h3 style="font-size: 1rem; margin: 24px 0 10px;">Education</h3>
+        <div class="cv-item">
+          <span class="cv-date">2014</span> — Bachelor of Fine Arts (BFA) in Painting, Islamic Azad University, Abadan
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="about-content">
+        <p>For inquiries, portfolio requests, or exhibition collaborations:</p>
+        <p style="margin-top: 8px;"><strong>Email:</strong> soroorkheyrollahi@gmail.com</p>
+        <p><strong>Location:</strong> Mahshahr, Khuzestan, Iran</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 Soroor Kheirollahi. All rights reserved.</div>
+    <div>Visual Artist Portfolio</div>
+  </footer>
+
+</body>
+</html>
