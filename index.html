@@ -1,358 +1,421 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Soroor Kheirollahi — Contemporary Visual Artist</title>
-  <meta name="description" content="Portfolio of Soroor Kheirollahi — Surrealist painter and visual artist." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soroor Kheirollahi | Contemporary Surrealist Visual Artist</title>
+  <meta name="description" content="Portfolio of Soroor Kheirollahi, contemporary Iranian surrealist painter and visual artist.">
 
+  <!-- Google Fonts for Modern Gallery Aesthetic -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #0c0d10;
-      --card-bg: #14151a;
-      --text: #eaeaea;
-      --muted: #8e929b;
-      --line: rgba(255, 255, 255, 0.08);
-      --accent: #f5f5f7;
-      --max: 1140px;
+      --bg-color: #121316;          /* طوسی زغالی بسیار تیره و شیک */
+      --card-bg: #1a1c20;           /* پس‌زمینه کارت آثار */
+      --card-border: #262930;       /* خطوط مرزی مینیمال */
+      --text-primary: #ededed;      /* سفید نرم و خوانا */
+      --text-muted: #9ba1ad;        /* خاکستری متالیک برای جزئیات */
+      --accent: #d8c29d;            /* طلایی مات گالری */
+      --transition: all 0.35s ease;
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.01em;
+      padding-bottom: 80px;
     }
-    a { color: inherit; text-decoration: none; }
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
-    /* Header */
+    /* HEADER */
     header {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(12, 13, 16, 0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-wrap {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 20px 0;
-    }
-    .brand h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 18px; margin: 0; letter-spacing: 0.15em; font-weight: 600;
-    }
-    .brand span {
-      font-size: 11px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-top: 4px;
-    }
-    nav { display: flex; gap: 24px; align-items: center; }
-    nav a { font-size: 13px; color: var(--muted); transition: color .2s; }
-    nav a:hover { color: var(--accent); }
-    .studio-link {
-      padding: 6px 14px; border: 1px solid var(--line); border-radius: 20px; font-size: 12px;
-    }
-    .studio-link:hover { border-color: rgba(255,255,255,0.3); }
-
-    /* Hero */
-    .hero {
-      padding: 80px 0 60px;
-      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center;
-    }
-    .hero-text h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 38px; line-height: 1.2; margin: 0 0 16px; font-weight: 400;
-      color: #fff;
-    }
-    .hero-text p {
-      color: var(--muted); font-size: 15px; max-width: 520px; margin: 0;
-    }
-    .portrait-wrap {
-      display: flex; justify-content: flex-end;
-    }
-    .portrait-img {
-      width: 240px; height: 290px; object-fit: cover; border-radius: 12px;
-      filter: grayscale(85%) contrast(110%);
-      border: 1px solid var(--line);
+      padding: 50px 24px 30px;
+      text-align: center;
+      border-bottom: 1px solid var(--card-border);
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    /* Section */
+    .artist-name {
+      font-family: 'Cinzel', serif;
+      font-size: 2.4rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #f5f5f5;
+      margin-bottom: 8px;
+    }
+
+    .artist-tagline {
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 15px;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: var(--transition);
+      padding: 6px 0;
+      position: relative;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--text-primary);
+    }
+
+    nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    section {
+      margin-bottom: 70px;
+    }
+
     .section-title {
       font-family: 'Cinzel', serif;
-      font-size: 14px; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--muted); margin: 60px 0 24px; padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
+      font-size: 1.5rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      border-left: 2px solid var(--accent);
+      padding-left: 14px;
+      color: var(--text-primary);
     }
 
-    /* Works Grid */
-    .grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 28px;
+    /* GALLERY GRID */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
     }
-    .card {
+
+    .artwork-card {
       background: var(--card-bg);
-      border: 1px solid var(--line);
-      border-radius: 12px; overflow: hidden;
-      cursor: pointer; transition: transform .3s ease, border-color .3s ease;
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
     }
-    .card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.25); }
-    .card-thumb {
-      aspect-ratio: 4 / 5; width: 100%; background: #000;
-      display: flex; align-items: center; justify-content: center;
+
+    .artwork-card:hover {
+      transform: translateY(-5px);
+      border-color: #3e434f;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    }
+
+    .media-container {
+      width: 100%;
+      height: 380px;
+      background: #0b0c0e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
     }
-    .card-thumb img, .card-thumb video {
-      width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease;
-    }
-    .card:hover .card-thumb img { transform: scale(1.03); }
-    .card-info { padding: 18px 20px; }
-    .card-info h4 { margin: 0 0 6px; font-size: 16px; font-weight: 500; }
-    .card-info p { margin: 0; font-size: 13px; color: var(--muted); }
 
-    /* About & Statement */
-    .statement-box {
-      background: var(--card-bg); border: 1px solid var(--line);
-      border-radius: 12px; padding: 36px; line-height: 1.8; color: #ccc; font-size: 15px;
+    .media-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      cursor: pointer;
     }
 
-    /* CV Section */
-    .cv-list { list-style: none; padding: 0; margin: 0; }
+    .artwork-card:hover .media-container img {
+      transform: scale(1.03);
+    }
+
+    .media-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .artwork-info {
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .artwork-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .artwork-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .artwork-statement {
+      margin-top: 10px;
+      font-size: 0.83rem;
+      color: #b5bac5;
+      font-style: italic;
+    }
+
+    /* BIO & STATEMENT */
+    .bio-container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      align-items: start;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 35px;
+      border-radius: 4px;
+    }
+
+    .artist-portrait {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 2px;
+      border: 1px solid var(--card-border);
+    }
+
+    .bio-text p {
+      margin-bottom: 16px;
+      color: #cfd3dc;
+      font-size: 0.95rem;
+      text-align: justify;
+    }
+
+    /* CV SECTION */
+    .cv-group {
+      margin-bottom: 24px;
+    }
+
+    .cv-group h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
     .cv-item {
-      display: flex; gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px;
+      display: flex;
+      gap: 16px;
+      font-size: 0.9rem;
+      color: #bcc1cb;
+      margin-bottom: 8px;
     }
-    .cv-year { color: var(--muted); width: 80px; flex-shrink: 0; }
-    .cv-desc { color: var(--text); }
 
-    /* Footer */
+    .cv-year {
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      min-width: 50px;
+    }
+
+    /* FOOTER */
     footer {
-      padding: 60px 0 40px; margin-top: 80px; border-top: 1px solid var(--line);
-      display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted);
+      text-align: center;
+      padding: 40px 20px 20px;
+      border-top: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    /* Lightbox */
-    .lb {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 100;
-      display: none; place-items: center; padding: 20px;
+    .admin-link {
+      color: #4b515d;
+      text-decoration: none;
+      font-size: 0.75rem;
+      margin-top: 12px;
+      display: inline-block;
+      transition: var(--transition);
     }
-    .lb.open { display: grid; }
-    .lb-content {
-      max-width: 900px; width: 100%; max-height: 90vh;
-      display: flex; flex-direction: column; align-items: center; position: relative;
-    }
-    .lb-media {
-      max-width: 100%; max-height: 72vh; border-radius: 8px; overflow: hidden;
-      border: 1px solid var(--line);
-    }
-    .lb-media img, .lb-media video {
-      display: block; max-width: 100%; max-height: 72vh; object-fit: contain;
-    }
-    .lb-media iframe { width: 800px; height: 450px; border: none; max-width: 90vw; }
-    .lb-meta { margin-top: 16px; text-align: center; }
-    .lb-meta h3 { margin: 0 0 6px; font-size: 18px; font-weight: 500; }
-    .lb-meta p { margin: 0; font-size: 13px; color: var(--muted); }
-    .lb-close {
-      position: absolute; top: -40px; right: 0;
-      color: #fff; font-size: 28px; cursor: pointer; line-height: 1;
+    .admin-link:hover {
+      color: var(--text-muted);
     }
 
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; text-align: center; gap: 24px; }
-      .portrait-wrap { justify-content: center; }
-      .hero-text h2 { font-size: 28px; }
-      nav { gap: 14px; }
-      footer { flex-direction: column; gap: 14px; text-align: center; }
+      .bio-container {
+        grid-template-columns: 1fr;
+      }
+      .artist-portrait {
+        max-width: 240px;
+        margin: 0 auto;
+      }
+      .artist-name {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap nav-wrap">
-    <div class="brand">
-      <h1>SOROOR KHEIROLLAHI</h1>
-      <span>Contemporary Visual Artist</span>
-    </div>
+  <!-- HEADER -->
+  <header>
+    <h1 class="artist-name">Soroor Kheirollahi</h1>
+    <div class="artist-tagline">Visual Artist • Contemporary Surrealism</div>
     <nav>
-      <a href="#works">Works</a>
-      <a href="#about">About</a>
-      <a href="#cv">CV</a>
+      <a href="#artworks" class="active">Selected Works</a>
+      <a href="#statement">Statement & Bio</a>
+      <a href="#cv">Curriculum Vitae</a>
       <a href="#contact">Contact</a>
-      <a href="/admin.html" class="studio-link">Studio Login</a>
     </nav>
-  </div>
-</header>
+  </header>
 
-<main class="wrap">
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-text">
-      <h2>Exploring the Subconscious and Surreal Metaphors.</h2>
-      <p>A selection of contemporary paintings and visual explorations investigating internal identity, silence, and psychological transformation.</p>
-    </div>
-    <div class="portrait-wrap">
-      <img src="soroor_photo.png" onerror="this.src='soroor_photo.png'" class="portrait-img" alt="Soroor Kheirollahi">
-    </div>
-  </section>
+  <main>
+    <!-- SELECTED WORKS -->
+    <section id="artworks">
+      <h2 class="section-title">Selected Works</h2>
+      <div id="works-container" class="gallery-grid">
+        <!-- آثار شما به صورت داینامیک از فایل دیتا یا پنل اینجا لود می‌شوند -->
+      </div>
+    </section>
 
-  <!-- Works Section -->
-  <section id="works">
-    <div class="section-title">Selected Artworks</div>
-    <div id="worksGrid" class="grid">
-      <!-- Artworks will load dynamically from content/works.json -->
-    </div>
-  </section>
+    <!-- ARTIST STATEMENT & BIO -->
+    <section id="statement">
+      <h2 class="section-title">Artist Statement & Biography</h2>
+      <div class="bio-container">
+        <!-- اگر فایل soroor_photo.png در مخزن است نمایش داده می‌شود -->
+        <img src="soroor_photo.png" alt="Soroor Kheirollahi" class="artist-portrait" onerror="this.style.display='none'">
+        <div class="bio-text">
+          <p>
+            <strong>Soroor Kheirollahi</strong> (b. Iran) is a contemporary visual artist focused on surrealist painting. Her visual vocabulary investigates the friction between personal identity, inner psyche, and external transformations. Employing deliberate distortion, psychological depth, and atmospheric balance, her works navigate liminal spaces between memory and subconscious observation.
+          </p>
+          <p>
+            She holds a Bachelor of Fine Arts (BFA) in Painting from Islamic Azad University, Abadan (graduated with high distinction, 2014) and has actively contributed to the regional contemporary art scene as an educator and active member of the Khuzestan Visual Arts Association.
+          </p>
+        </div>
+      </div>
+    </section>
 
-  <!-- Statement Section -->
-  <section id="about">
-    <div class="section-title">Artist Statement</div>
-    <div class="statement-box">
-      My artistic practice revolves around surrealist and symbolic exploration of human emotion, concealed identities, and the subconscious world. Through layered textures and evocative visual elements, each piece seeks to bridge the delicate boundary between reality, memory, and personal narrative.
-    </div>
-  </section>
+    <!-- CV -->
+    <section id="cv">
+      <h2 class="section-title">Curriculum Vitae</h2>
+      <div class="bio-container" style="display: block;">
+        <div class="cv-group">
+          <h3>Education</h3>
+          <div class="cv-item"><span class="cv-year">2014</span><span>BFA in Painting, Islamic Azad University, Abadan Branch (GPA: 17.87 / 20)</span></div>
+          <div class="cv-item"><span class="cv-year">2016</span><span>MSc in Chemical & Process Engineering</span></div>
+        </div>
 
-  <!-- CV Section -->
-  <section id="cv">
-    <div class="section-title">Curriculum Vitae</div>
-    <ul class="cv-list">
-      <li class="cv-item">
-        <span class="cv-year">2025</span>
-        <span class="cv-desc">Four Seasons of Art 4, Pooneh Gallery, Ahvaz, Iran</span>
-      </li>
-      <li class="cv-item">
-        <span class="cv-year">2024</span>
-        <span class="cv-desc">Recycling Art Festival (Paper Category), Mahshahr, Iran</span>
-      </li>
-      <li class="cv-item">
-        <span class="cv-year">2020</span>
-        <span class="cv-desc">Selected Artist, 12th Fajr International Festival of Visual Arts, Tehran, Iran</span>
-      </li>
-      <li class="cv-item">
-        <span class="cv-year">2019</span>
-        <span class="cv-desc">Hes Group Exhibition, Ahvaz, Iran</span>
-      </li>
-      <li class="cv-item">
-        <span class="cv-year">2014</span>
-        <span class="cv-desc">Bachelor of Fine Arts (BFA) in Painting, Islamic Azad University, Abadan Branch (GPA: 17.87/20)</span>
-      </li>
-    </ul>
-  </section>
+        <div class="cv-group">
+          <h3>Selected Exhibitions & Honors</h3>
+          <div class="cv-item"><span class="cv-year">2020</span><span>Selected Artist, 12th Fajr International Festival of Visual Arts, Tehran, Iran</span></div>
+          <div class="cv-item"><span class="cv-year">2014–Present</span><span>Selected Group Exhibitions (Tehran, Ahvaz, Kish Island, Mahshahr)</span></div>
+        </div>
 
-  <!-- Contact -->
-  <section id="contact">
-    <div class="section-title">Contact & Studio</div>
-    <div style="color:var(--muted); font-size:14px; line-height:1.8;">
-      <p>For inquiries, catalog requests, or exhibition collaborations:</p>
-      <p>Email: <a href="mailto:soroorkheyrollahi@gmail.com" style="color:#fff; text-decoration:underline;">soroorkheyrollahi@gmail.com</a></p>
-      <p>Location: Mahshahr, Khuzestan, Iran</p>
-    </div>
-  </section>
+        <div class="cv-group">
+          <h3>Professional Affiliations</h3>
+          <div class="cv-item"><span class="cv-year">Member</span><span>Khuzestan Visual Arts Association</span></div>
+          <div class="cv-item"><span class="cv-year">Instructor</span><span>Visual Arts & Cultural Instructor, Kanoon (Mahshahr Center)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="bio-container" style="display: block; text-align: center; padding: 25px;">
+        <p style="color: var(--text-muted); margin-bottom: 8px;">For inquiries, exhibitions, and portfolio acquisitions:</p>
+        <p><a href="mailto:soroorkheyrollahi@gmail.com" style="color: var(--accent); text-decoration: none; font-size: 1.1rem; letter-spacing: 0.05em;">soroorkheyrollahi@gmail.com</a></p>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 6px;">Mahshahr, Khuzestan, Iran</p>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <div>© <span id="yearEl"></span> Soroor Kheirollahi. All rights reserved.</div>
-    <div><a href="/admin.html">Studio Admin</a></div>
-  </footer>
-</main>
-
-<!-- Lightbox Modal -->
-<div id="lightbox" class="lb">
-  <div class="lb-content">
-    <span class="lb-close" id="lbClose">&times;</span>
-    <div class="lb-media" id="lbMedia"></div>
-    <div class="lb-meta">
-      <h3 id="lbTitle"></h3>
-      <p id="lbDetails"></p>
-      <p id="lbDesc" style="margin-top:8px; font-style:italic; color:#aaa;"></p>
+    <p>© 2026 Soroor Kheirollahi. All Rights Reserved.</p>
+    <div>
+      <a href="/admin/" class="admin-link">Studio Access</a>
     </div>
-  </div>
-</div>
+  </footer>
 
-<script>
-  document.getElementById('yearEl').textContent = new Date().getFullYear();
+  <!-- اسکریپت بارگذاری خودکار آثار -->
+  <script>
+    async function loadWorks() {
+      const container = document.getElementById('works-container');
+      try {
+        const res = await fetch('works.json?v=' + Date.now());
+        if (!res.ok) throw new Error('No works found yet');
+        const works = await res.json();
+        
+        if (works.length === 0) {
+          container.innerHTML = '<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center; padding: 40px;">No artworks published yet. Log in to the studio to upload your first piece.</p>';
+          return;
+        }
 
-  const defaultDemo = [
-    {
-      title: "Silent Metamorphosis",
-      year: "2024",
-      medium: "Oil on canvas",
-      dimensions: "100 × 120 cm",
-      type: "image",
-      src: "soroor_photo.png",
-      description: "Exploration of speech, quiet identity and surreal form."
-    }
-  ];
+        container.innerHTML = works.map(w => {
+          let mediaHtml = '';
+          if (w.mediaType === 'youtube' && w.youtubeUrl) {
+            let vid = '';
+            if (w.youtubeUrl.includes('v=')) vid = w.youtubeUrl.split('v=')[1].split('&')[0];
+            else if (w.youtubeUrl.includes('youtu.be/')) vid = w.youtubeUrl.split('youtu.be/')[1].split('?')[0];
+            mediaHtml = `<iframe src="https://www.youtube.com/embed/${vid}" allowfullscreen></iframe>`;
+          } else if (w.mediaType === 'video' && w.fileUrl) {
+            mediaHtml = `<video src="${w.fileUrl}" controls style="width:100%;height:100%;object-fit:cover;"></video>`;
+          } else {
+            mediaHtml = `<img src="${w.fileUrl || w.imageUrl}" alt="${w.title}">`;
+          }
 
-  async function loadPortfolio() {
-    const grid = document.getElementById('worksGrid');
-    try {
-      const res = await fetch('content/works.json?t=' + Date.now());
-      if (!res.ok) throw new Error('No works yet');
-      const works = await res.json();
-      renderWorks(works.length ? works : defaultDemo);
-    } catch (e) {
-      renderWorks(defaultDemo);
-    }
-  }
-
-  function renderWorks(items) {
-    const grid = document.getElementById('worksGrid');
-    grid.innerHTML = '';
-    items.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      
-      let thumbContent = '';
-      if (item.type === 'video') {
-        thumbContent = `<video src="${item.src}" muted playsinline></video>`;
-      } else if (item.type === 'youtube') {
-        thumbContent = `<iframe src="${item.src}" allow="accelerometer; autoplay; encrypted-media; gyroscope" allowfullscreen></iframe>`;
-      } else {
-        thumbContent = `<img src="${item.src}" alt="${item.title}">`;
+          return `
+            <article class="artwork-card">
+              <div class="media-container">${mediaHtml}</div>
+              <div class="artwork-info">
+                <h3 class="artwork-title">${w.title}</h3>
+                <div class="artwork-meta">
+                  <div>${w.year || ''} • ${w.medium || ''}</div>
+                  <div>${w.dimensions || ''}</div>
+                </div>
+                ${w.statement ? `<p class="artwork-statement">${w.statement}</p>` : ''}
+              </div>
+            </article>
+          `;
+        }).join('');
+      } catch (err) {
+        container.innerHTML = '<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center; padding: 40px;">Gallery is being curated. Please check back shortly.</p>';
       }
-
-      card.innerHTML = `
-        <div class="card-thumb">${thumbContent}</div>
-        <div class="card-info">
-          <h4>${item.title}</h4>
-          <p>${[item.medium, item.dimensions, item.year].filter(Boolean).join(' • ')}</p>
-        </div>
-      `;
-      card.addEventListener('click', () => openModal(item));
-      grid.appendChild(card);
-    });
-  }
-
-  const lb = document.getElementById('lightbox');
-  const lbClose = document.getElementById('lbClose');
-  const lbMedia = document.getElementById('lbMedia');
-  const lbTitle = document.getElementById('lbTitle');
-  const lbDetails = document.getElementById('lbDetails');
-  const lbDesc = document.getElementById('lbDesc');
-
-  function openModal(item) {
-    lbTitle.textContent = item.title;
-    lbDetails.textContent = [item.medium, item.dimensions, item.year].filter(Boolean).join(' — ');
-    lbDesc.textContent = item.description || '';
-
-    if (item.type === 'video') {
-      lbMedia.innerHTML = `<video src="${item.src}" controls autoplay playsinline style="max-height:70vh;"></video>`;
-    } else if (item.type === 'youtube') {
-      lbMedia.innerHTML = `<iframe src="${item.src}" allowfullscreen></iframe>`;
-    } else {
-      lbMedia.innerHTML = `<img src="${item.src}" alt="${item.title}">`;
     }
-    lb.classList.add('open');
-  }
-
-  lbClose.addEventListener('click', () => lb.classList.remove('open'));
-  lb.addEventListener('click', (e) => { if (e.target === lb) lb.classList.remove('open'); });
-
-  loadPortfolio();
-</script>
-
+    loadWorks();
+  </script>
 </body>
 </html>
