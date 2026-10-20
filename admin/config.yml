@@ -2,22 +2,21 @@ backend:
   name: github
   repo: soroorkheirollahi/soroorkheirollahi.github.io
   branch: main
+  auth_type: implicit
 
-media_folder: "uploads"
-public_folder: "/uploads"
+media_folder: "assets/images"
+public_folder: "assets/images"
 
 collections:
-  - name: "works"
+  - name: "artworks"
     label: "Artworks"
     folder: "content"
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Year", name: "year", widget: "string", required: false}
-      - {label: "Medium", name: "medium", widget: "string", required: false}
-      - {label: "Dimensions", name: "dimensions", widget: "string", required: false}
-      - {label: "Media Type", name: "mediaType", widget: "select", options: ["image", "video", "youtube"], default: "image"}
-      - {label: "File or Image", name: "fileUrl", widget: "image", required: false}
-      - {label: "YouTube URL", name: "youtubeUrl", widget: "string", required: false}
-      - {label: "Artist Statement / Note", name: "statement", widget: "text", required: false}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Dimensions", name: "dimensions", widget: "string" }
+      - { label: "Medium", name: "medium", widget: "string" }
+      - { label: "Artwork File", name: "fileUrl", widget: "image" }
+      - { label: "Statement", name: "statement", widget: "text", required: false }
