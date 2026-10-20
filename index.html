@@ -371,51 +371,163 @@
   </footer>
 
   <!-- اسکریپت بارگذاری خودکار آثار -->
-  <script>
-    async function loadWorks() {
-      const container = document.getElementById('works-container');
-      try {
-        const res = await fetch('works.json?v=' + Date.now());
-        if (!res.ok) throw new Error('No works found yet');
-        const works = await res.json();
-        
-        if (works.length === 0) {
-          container.innerHTML = '<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center; padding: 40px;">No artworks published yet. Log in to the studio to upload your first piece.</p>';
-          return;
-        }
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soroor Kheirollahi | Contemporary Surrealist Visual Artist</title>
+  <meta name="description" content="Portfolio of Soroor Kheirollahi, contemporary Iranian surrealist painter and visual artist.">
 
-        container.innerHTML = works.map(w => {
-          let mediaHtml = '';
-          if (w.mediaType === 'youtube' && w.youtubeUrl) {
-            let vid = '';
-            if (w.youtubeUrl.includes('v=')) vid = w.youtubeUrl.split('v=')[1].split('&')[0];
-            else if (w.youtubeUrl.includes('youtu.be/')) vid = w.youtubeUrl.split('youtu.be/')[1].split('?')[0];
-            mediaHtml = `<iframe src="https://www.youtube.com/embed/${vid}" allowfullscreen></iframe>`;
-          } else if (w.mediaType === 'video' && w.fileUrl) {
-            mediaHtml = `<video src="${w.fileUrl}" controls style="width:100%;height:100%;object-fit:cover;"></video>`;
-          } else {
-            mediaHtml = `<img src="${w.fileUrl || w.imageUrl}" alt="${w.title}">`;
-          }
+  <!-- Google Fonts for Modern Gallery Aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-          return `
-            <article class="artwork-card">
-              <div class="media-container">${mediaHtml}</div>
-              <div class="artwork-info">
-                <h3 class="artwork-title">${w.title}</h3>
-                <div class="artwork-meta">
-                  <div>${w.year || ''} • ${w.medium || ''}</div>
-                  <div>${w.dimensions || ''}</div>
-                </div>
-                ${w.statement ? `<p class="artwork-statement">${w.statement}</p>` : ''}
-              </div>
-            </article>
-          `;
-        }).join('');
-      } catch (err) {
-        container.innerHTML = '<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center; padding: 40px;">Gallery is being curated. Please check back shortly.</p>';
-      }
+  <style>
+    :root {
+      --bg-color: #121316;          /* طوسی زغالی بسیار تیره و شیک */
+      --card-bg: #1a1c20;           /* پس‌زمینه کارت آثار */
+      --card-border: #262930;       /* خطوط مرزی مینیمال */
+      --text-primary: #ededed;      /* سفید نرم و خوانا */
+      --text-muted: #9ba1ad;        /* خاکستری متالیک برای جزئیات */
+      --accent: #d8c29d;            /* طلایی مات گالری */
+      --transition: all 0.35s ease;
     }
-    loadWorks();
-  </script>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+      padding-bottom: 80px;
+    }
+
+    /* HEADER */
+    header {
+      padding: 50px 24px 30px;
+      text-align: center;
+      border-bottom: 1px solid var(--card-border);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .artist-name {
+      font-family: 'Cinzel', serif;
+      font-size: 2.4rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #f5f5f5;
+      margin-bottom: 8px;
+    }
+
+    .artist-tagline {
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 15px;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: var(--transition);
+      padding: 6px 0;
+      position: relative;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--text-primary);
+    }
+
+    nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    section {
+      margin-bottom: 70px;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      border-left: 2px solid var(--accent);
+      padding-left: 14px;
+      color: var(--text-primary);
+    }
+
+    /* GALLERY GRID */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .artwork-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+    }
+
+    .artwork-card:hover {
+      transform: translateY(-5px);
+      border-color: #3e434f;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    }
+
+    .media-container {
+      width: 100%;
+      height: 380px;
+      background: #0b0c0e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .media-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition
 </body>
 </html>
