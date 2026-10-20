@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio Admin — Soroor Kheirollahi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1013;
+      --card: #18191e;
+      --border: rgba(255,255,255,0.08);
+      --text: #f0f0f2;
+      --muted: #8b8f97;
+      --accent: #ffffff;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 560px;
+      padding: 32px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    }
+    h1 { font-size: 20px; font-weight: 600; margin: 0 0 6px; letter-spacing: -0.02em; }
+    p.sub { font-size: 13px; color: var(--muted); margin: 0 0 24px; line-height: 1.5; }
+    .form-group { margin-bottom: 18px; }
+    label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+    input[type="text"], input[type="password"], textarea, select {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: #fff;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .2s;
+    }
+    input:focus, textarea:focus, select:focus { border-color: rgba(255,255,255,0.3); }
+    textarea { resize: vertical; min-height: 70px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn {
+      width: 100%;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 13px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: opacity .2s;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .status {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+      line-height: 1.4;
+    }
+    .status.success { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); display: block; }
+    .status.error { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); display: block; }
+    .hidden { display: none !important; }
+    .top-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .logout-btn { background: none; border: none; color: var(--muted); font-size: 12px; cursor: pointer; text-decoration: underline; }
+    .file-box { border: 1px dashed var(--border); padding: 14px; border-radius: 8px; text-align: center; }
+  </style>
+</head>
+<body>
+
+<div class="panel">
+  <!-- Auth Screen -->
+  <div id="authScreen">
+    <h1>Studio Login</h1>
+    <p class="sub">Enter your secret Studio Access Token to manage your portfolio.</p>
+    <div class="form-group">
+      <label>Access Token</label>
+      <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+    </div>
+    <button class="btn" id="loginBtn">Login to Studio</button>
+  </div>
+
+  <!-- Manager Screen -->
+  <div id="managerScreen" class="hidden">
+    <div class="top-actions">
+      <div>
+        <h1>Upload New Artwork</h1>
+        <span style="font-size:12px; color:var(--muted)">Soroor Kheirollahi Portfolio</span>
+      </div>
+      <button class="logout-btn" id="logoutBtn">Logout</button>
+    </div>
+
+    <form id="artworkForm">
+      <div class="form-group">
+        <label>Artwork Title</label>
+        <input type="text" id="title" required placeholder="e.g. Whispers of the Unconscious">
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label>Year</label>
+          <input type="text" id="year" placeholder="2026">
+        </div>
+        <div class="form-group">
+          <label>Dimensions</label>
+          <input type="text" id="dimensions" placeholder="e.g. 100 × 120 cm">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Medium / Technique</label>
+        <input type="text" id="medium" placeholder="e.g. Oil on canvas">
+      </div>
+
+      <div class="form-group">
+        <label>Media Type</label>
+        <select id="mediaType">
+          <option value="image">Image (JPG / PNG / WEBP)</option>
+          <option value="video">Video File (MP4 / WEBM)</option>
+          <option value="youtube">YouTube Embed Link</option>
+        </select>
+      </div>
+
+      <!-- File Upload Box -->
+      <div class="form-group" id="fileGroup">
+        <label>Select File</label>
+        <div class="file-box">
+          <input type="file" id="mediaFile" accept="image/*,video/mp4,video/webm">
+        </div>
+      </div>
+
+      <!-- YouTube URL Input -->
+      <div class="form-group hidden" id="ytGroup">
+        <label>YouTube Video URL or Embed URL</label>
+        <input type="text" id="ytUrl" placeholder="https://www.youtube.com/watch?v=... or embed link">
+      </div>
+
+      <div class="form-group">
+        <label>Description / Concept (Optional)</label>
+        <textarea id="desc" placeholder="Curatorial statement or concept notes for this artwork..."></textarea>
+      </div>
+
+      <button type="submit" class="btn" id="submitBtn">Publish to Portfolio</button>
+    </form>
+
+    <div id="status" class="status"></div>
+  </div>
+</div>
+
+<script>
+  const OWNER = "soroorkheirollahi";
+  const REPO = "soroorkheirollahi.github.io";
+  const WORKS_PATH = "content/works.json";
+
+  const authScreen = document.getElementById('authScreen');
+  const managerScreen = document.getElementById('managerScreen');
+  const tokenInput = document.getElementById('tokenInput');
+  const loginBtn = document.getElementById('loginBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const mediaType = document.getElementById('mediaType');
+  const fileGroup = document.getElementById('fileGroup');
+  const ytGroup = document.getElementById('ytGroup');
+  const artworkForm = document.getElementById('artworkForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const statusEl = document.getElementById('status');
+
+  let token = localStorage.getItem('art_token') || '';
+
+  if (token) showManager();
+
+  loginBtn.addEventListener('click', () => {
+    const val = tokenInput.value.trim();
+    if (!val) return alert('Please enter your token');
+    token = val;
+    localStorage.setItem('art_token', token);
+    showManager();
+  });
+
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('art_token');
+    token = '';
+    managerScreen.classList.add('hidden');
+    authScreen.classList.remove('hidden');
+  });
+
+  function showManager() {
+    authScreen.classList.add('hidden');
+    managerScreen.classList.remove('hidden');
+  }
+
+  mediaType.addEventListener('change', () => {
+    if (mediaType.value === 'youtube') {
+      fileGroup.classList.add('hidden');
+      ytGroup.classList.remove('hidden');
+    } else {
+      fileGroup.classList.remove('hidden');
+      ytGroup.classList.add('hidden');
+    }
+  });
+
+  function setStatus(msg, type) {
+    statusEl.textContent = msg;
+    statusEl.className = 'status ' + type;
+  }
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function getFileSha(path) {
+    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (res.status === 404) return null;
+    const data = await res.json();
+    return { sha: data.sha, content: decodeURIComponent(escape(atob(data.content))) };
+  }
+
+  artworkForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    setStatus('Processing and uploading...', 'success');
+
+    try {
+      let mediaSrc = '';
+      const type = mediaType.value;
+
+      if (type === 'youtube') {
+        let yLink = document.getElementById('ytUrl').value.trim();
+        if (yLink.includes('watch?v=')) {
+          const id = yLink.split('watch?v=')[1].split('&')[0];
+          yLink = `https://www.youtube.com/embed/${id}`;
+        }
+        mediaSrc = yLink;
+      } else {
+        const fileInput = document.getElementById('mediaFile');
+        if (!fileInput.files.length) throw new Error('Please choose a file to upload');
+        const file = fileInput.files[0];
+        
+        setStatus('Uploading media file to gallery storage...', 'success');
+        const b64 = await fileToBase64(file);
+        const cleanName = Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+        const uploadPath = `uploads/${cleanName}`;
+
+        const uploadRes = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${uploadPath}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: `Upload media: ${file.name}`,
+            content: b64
+          })
+        });
+
+        if (!uploadRes.ok) throw new Error('Failed to upload file. Check your token permissions.');
+        mediaSrc = uploadPath;
+      }
+
+      setStatus('Updating portfolio works list...', 'success');
+
+      // Fetch existing works.json or start empty
+      const existing = await getFileSha(WORKS_PATH);
+      let works = [];
+      let sha = undefined;
+
+      if (existing) {
+        sha = existing.sha;
+        try { works = JSON.parse(existing.content); } catch(err) { works = []; }
+      }
+
+      // Add new artwork to the top of the list
+      const newWork = {
+        id: Date.now(),
+        title: document.getElementById('title').value.trim(),
+        year: document.getElementById('year').value.trim(),
+        dimensions: document.getElementById('dimensions').value.trim(),
+        medium: document.getElementById('medium').value.trim(),
+        type: type,
+        src: mediaSrc,
+        description: document.getElementById('desc').value.trim()
+      };
+
+      works.unshift(newWork);
+
+      const updateRes = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${WORKS_PATH}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: `Add artwork: ${newWork.title}`,
+          content: btoa(unescape(encodeURIComponent(JSON.stringify(works, null, 2)))),
+          sha: sha
+        })
+      });
+
+      if (!updateRes.ok) throw new Error('Failed to update catalog.');
+
+      setStatus('Artwork successfully published! It will appear on your homepage in a minute.', 'success');
+      artworkForm.reset();
+    } catch (err) {
+      setStatus(err.message, 'error');
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
