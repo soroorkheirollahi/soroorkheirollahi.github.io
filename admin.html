@@ -1,340 +1,473 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Studio Admin — Soroor Kheirollahi</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Admin | Soroor Kheirollahi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0f1013;
-      --card: #18191e;
-      --border: rgba(255,255,255,0.08);
-      --text: #f0f0f2;
-      --muted: #8b8f97;
-      --accent: #ffffff;
-      --radius: 12px;
+      --bg: #0c0d0f;
+      --card-bg: #141619;
+      --card-border: #23272d;
+      --text-main: #f0f2f5;
+      --text-muted: #8b949e;
+      --accent: #e5e7eb;
+      --btn-bg: #f3f4f6;
+      --btn-text: #0c0d0f;
+      --danger: #ef4444;
+      --success: #10b981;
     }
-    * { box-sizing: border-box; }
-    body {
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
-      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
     }
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+
+    .container {
       width: 100%;
-      max-width: 560px;
-      padding: 32px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      max-width: 520px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 2.2rem 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
     }
-    h1 { font-size: 20px; font-weight: 600; margin: 0 0 6px; letter-spacing: -0.02em; }
-    p.sub { font-size: 13px; color: var(--muted); margin: 0 0 24px; line-height: 1.5; }
-    .form-group { margin-bottom: 18px; }
-    label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
-    input[type="text"], input[type="password"], textarea, select {
-      width: 100%;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 14px;
+
+    .header {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.45rem;
+      letter-spacing: 0.05em;
+      font-weight: 600;
       color: #fff;
-      font-size: 14px;
+    }
+
+    .subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+      letter-spacing: 0.03em;
+    }
+
+    .logout-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .logout-btn:hover {
+      color: var(--danger);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: #090a0c;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      font-size: 0.92rem;
+      color: var(--text-main);
       font-family: inherit;
       outline: none;
-      transition: border-color .2s;
+      transition: border-color 0.2s;
     }
-    input:focus, textarea:focus, select:focus { border-color: rgba(255,255,255,0.3); }
-    textarea { resize: vertical; min-height: 70px; }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #6b7280;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 85px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
     .btn {
       width: 100%;
-      background: var(--accent);
-      color: #000;
+      background: var(--btn-bg);
+      color: var(--btn-text);
       border: none;
       border-radius: 8px;
-      padding: 13px;
+      padding: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      font-size: 14px;
+      letter-spacing: 0.04em;
       cursor: pointer;
-      margin-top: 10px;
-      transition: opacity .2s;
+      margin-top: 1rem;
+      transition: opacity 0.2s, transform 0.1s;
     }
-    .btn:hover { opacity: 0.9; }
-    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-    .status {
-      margin-top: 16px;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 13px;
+
+    .btn:hover {
+      opacity: 0.92;
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .msg {
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      line-height: 1.4;
+      padding: 0.75rem;
+      border-radius: 6px;
       display: none;
+    }
+
+    .msg.error {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+      display: block;
+    }
+
+    .msg.success {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #86efac;
+      display: block;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .setup-hint {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 0.6rem;
       line-height: 1.4;
     }
-    .status.success { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); display: block; }
-    .status.error { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); display: block; }
-    .hidden { display: none !important; }
-    .top-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    .logout-btn { background: none; border: none; color: var(--muted); font-size: 12px; cursor: pointer; text-decoration: underline; }
-    .file-box { border: 1px dashed var(--border); padding: 14px; border-radius: 8px; text-align: center; }
   </style>
 </head>
 <body>
 
-<div class="panel">
-  <!-- Auth Screen -->
-  <div id="authScreen">
-    <h1>Studio Login</h1>
-    <p class="sub">Enter your secret Studio Access Token to manage your portfolio.</p>
-    <div class="form-group">
-      <label>Access Token</label>
-      <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-    </div>
-    <button class="btn" id="loginBtn">Login to Studio</button>
-  </div>
-
-  <!-- Manager Screen -->
-  <div id="managerScreen" class="hidden">
-    <div class="top-actions">
-      <div>
-        <h1>Upload New Artwork</h1>
-        <span style="font-size:12px; color:var(--muted)">Soroor Kheirollahi Portfolio</span>
-      </div>
-      <button class="logout-btn" id="logoutBtn">Logout</button>
-    </div>
-
-    <form id="artworkForm">
-      <div class="form-group">
-        <label>Artwork Title</label>
-        <input type="text" id="title" required placeholder="e.g. Whispers of the Unconscious">
-      </div>
-
-      <div class="row">
-        <div class="form-group">
-          <label>Year</label>
-          <input type="text" id="year" placeholder="2026">
-        </div>
-        <div class="form-group">
-          <label>Dimensions</label>
-          <input type="text" id="dimensions" placeholder="e.g. 100 × 120 cm">
+  <div class="container">
+    
+    <!-- LOGIN SCREEN -->
+    <div id="loginSection">
+      <div class="header">
+        <div>
+          <h1>Studio Sign In</h1>
+          <p class="subtitle">Soroor Kheirollahi Portfolio Management</p>
         </div>
       </div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="adminPass">Password</label>
+          <input type="password" id="adminPass" placeholder="Enter password (42621048)" required autocomplete="current-password">
+        </div>
 
-      <div class="form-group">
-        <label>Medium / Technique</label>
-        <input type="text" id="medium" placeholder="e.g. Oil on canvas">
+        <div id="tokenSetupRow" class="form-group hidden">
+          <label for="ghToken">GitHub Personal Access Token (Setup only)</label>
+          <input type="password" id="ghToken" placeholder="ghp_...">
+          <p class="setup-hint">این فیلد فقط یک‌بار نمایش داده می‌شود تا توکن شما ذخیره شود و دفعات بعد فقط پسورد را بزنید.</p>
+        </div>
+
+        <button type="submit" class="btn" id="loginBtn">Enter Studio</button>
+        <div id="loginMsg" class="msg"></div>
+      </form>
+    </div>
+
+    <!-- ARTWORK PUBLISHING SCREEN -->
+    <div id="adminSection" class="hidden">
+      <div class="header">
+        <div>
+          <h1>Upload New Artwork</h1>
+          <p class="subtitle">Soroor Kheirollahi Portfolio</p>
+        </div>
+        <button class="logout-btn" id="logoutBtn" type="button">Logout</button>
       </div>
 
-      <div class="form-group">
-        <label>Media Type</label>
-        <select id="mediaType">
-          <option value="image">Image (JPG / PNG / WEBP)</option>
-          <option value="video">Video File (MP4 / WEBM)</option>
-          <option value="youtube">YouTube Embed Link</option>
-        </select>
-      </div>
+      <form id="artworkForm">
+        <div class="form-group">
+          <label for="title">Artwork Title</label>
+          <input type="text" id="title" placeholder="e.g. Whispers of the Unconscious" required>
+        </div>
 
-      <!-- File Upload Box -->
-      <div class="form-group" id="fileGroup">
-        <label>Select File</label>
-        <div class="file-box">
+        <div class="row">
+          <div class="form-group">
+            <label for="year">Year</label>
+            <input type="text" id="year" value="2026" required>
+          </div>
+          <div class="form-group">
+            <label for="dimensions">Dimensions</label>
+            <input type="text" id="dimensions" placeholder="e.g. 100 × 120 cm" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="medium">Medium / Technique</label>
+          <input type="text" id="medium" placeholder="e.g. Oil on canvas" required>
+        </div>
+
+        <div class="form-group">
+          <label for="mediaType">Media Type</label>
+          <select id="mediaType">
+            <option value="image">Image (JPG / PNG / WEBP)</option>
+            <option value="video_upload">Video File (MP4 / WebM)</option>
+            <option value="video_link">YouTube Video (Link)</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="fileGroup">
+          <label for="mediaFile">Select File</label>
           <input type="file" id="mediaFile" accept="image/*,video/mp4,video/webm">
         </div>
-      </div>
 
-      <!-- YouTube URL Input -->
-      <div class="form-group hidden" id="ytGroup">
-        <label>YouTube Video URL or Embed URL</label>
-        <input type="text" id="ytUrl" placeholder="https://www.youtube.com/watch?v=... or embed link">
-      </div>
+        <div class="form-group hidden" id="linkGroup">
+          <label for="videoUrl">YouTube URL</label>
+          <input type="url" id="videoUrl" placeholder="https://www.youtube.com/watch?v=...">
+        </div>
 
-      <div class="form-group">
-        <label>Description / Concept (Optional)</label>
-        <textarea id="desc" placeholder="Curatorial statement or concept notes for this artwork..."></textarea>
-      </div>
+        <div class="form-group">
+          <label for="description">Description / Concept (Optional)</label>
+          <textarea id="description" placeholder="Curatorial statement or concept notes for this artwork..."></textarea>
+        </div>
 
-      <button type="submit" class="btn" id="submitBtn">Publish to Portfolio</button>
-    </form>
+        <button type="submit" class="btn" id="submitBtn">Publish to Portfolio</button>
+        <div id="statusMsg" class="msg"></div>
+      </form>
+    </div>
 
-    <div id="status" class="status"></div>
   </div>
-</div>
 
-<script>
-  const OWNER = "soroorkheirollahi";
-  const REPO = "soroorkheirollahi.github.io";
-  const WORKS_PATH = "content/works.json";
+  <script>
+    const REPO_OWNER = 'soroorkheirollahi';
+    const REPO_NAME = 'soroorkheirollahi.github.io';
+    const REQUIRED_PASS = '42621048';
 
-  const authScreen = document.getElementById('authScreen');
-  const managerScreen = document.getElementById('managerScreen');
-  const tokenInput = document.getElementById('tokenInput');
-  const loginBtn = document.getElementById('loginBtn');
-  const logoutBtn = document.getElementById('logoutBtn');
-  const mediaType = document.getElementById('mediaType');
-  const fileGroup = document.getElementById('fileGroup');
-  const ytGroup = document.getElementById('ytGroup');
-  const artworkForm = document.getElementById('artworkForm');
-  const submitBtn = document.getElementById('submitBtn');
-  const statusEl = document.getElementById('status');
+    const loginSection = document.getElementById('loginSection');
+    const adminSection = document.getElementById('adminSection');
+    const loginForm = document.getElementById('loginForm');
+    const adminPass = document.getElementById('adminPass');
+    const tokenSetupRow = document.getElementById('tokenSetupRow');
+    const ghToken = document.getElementById('ghToken');
+    const loginMsg = document.getElementById('loginMsg');
+    const logoutBtn = document.getElementById('logoutBtn');
 
-  let token = localStorage.getItem('art_token') || '';
+    const artworkForm = document.getElementById('artworkForm');
+    const mediaType = document.getElementById('mediaType');
+    const fileGroup = document.getElementById('fileGroup');
+    const linkGroup = document.getElementById('linkGroup');
+    const mediaFile = document.getElementById('mediaFile');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusMsg = document.getElementById('statusMsg');
 
-  if (token) showManager();
-
-  loginBtn.addEventListener('click', () => {
-    const val = tokenInput.value.trim();
-    if (!val) return alert('Please enter your token');
-    token = val;
-    localStorage.setItem('art_token', token);
-    showManager();
-  });
-
-  logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('art_token');
-    token = '';
-    managerScreen.classList.add('hidden');
-    authScreen.classList.remove('hidden');
-  });
-
-  function showManager() {
-    authScreen.classList.add('hidden');
-    managerScreen.classList.remove('hidden');
-  }
-
-  mediaType.addEventListener('change', () => {
-    if (mediaType.value === 'youtube') {
-      fileGroup.classList.add('hidden');
-      ytGroup.classList.remove('hidden');
-    } else {
-      fileGroup.classList.remove('hidden');
-      ytGroup.classList.add('hidden');
+    // بررسی اولیه ذخیره بودن توکن
+    const savedToken = localStorage.getItem('gh_token_portfolio');
+    if (!savedToken) {
+      tokenSetupRow.classList.remove('hidden');
     }
-  });
 
-  function setStatus(msg, type) {
-    statusEl.textContent = msg;
-    statusEl.className = 'status ' + type;
-  }
-
-  function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result.split(',')[1]);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  }
-
-  async function getFileSha(path) {
-    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`, {
-      headers: { 'Authorization': `Bearer ${token}` }
-    });
-    if (res.status === 404) return null;
-    const data = await res.json();
-    return { sha: data.sha, content: decodeURIComponent(escape(atob(data.content))) };
-  }
-
-  artworkForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    setStatus('Processing and uploading...', 'success');
-
-    try {
-      let mediaSrc = '';
-      const type = mediaType.value;
-
-      if (type === 'youtube') {
-        let yLink = document.getElementById('ytUrl').value.trim();
-        if (yLink.includes('watch?v=')) {
-          const id = yLink.split('watch?v=')[1].split('&')[0];
-          yLink = `https://www.youtube.com/embed/${id}`;
-        }
-        mediaSrc = yLink;
+    // تغییر نوع مدیا
+    mediaType.addEventListener('change', () => {
+      if (mediaType.value === 'video_link') {
+        fileGroup.classList.add('hidden');
+        linkGroup.classList.remove('hidden');
+        mediaFile.removeAttribute('required');
       } else {
-        const fileInput = document.getElementById('mediaFile');
-        if (!fileInput.files.length) throw new Error('Please choose a file to upload');
-        const file = fileInput.files[0];
-        
-        setStatus('Uploading media file to gallery storage...', 'success');
-        const b64 = await fileToBase64(file);
-        const cleanName = Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
-        const uploadPath = `uploads/${cleanName}`;
+        fileGroup.classList.remove('hidden');
+        linkGroup.classList.add('hidden');
+      }
+    });
 
-        const uploadRes = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${uploadPath}`, {
+    // لاگین با پسورد
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      loginMsg.className = 'msg';
+      loginMsg.textContent = '';
+
+      if (adminPass.value.trim() !== REQUIRED_PASS) {
+        loginMsg.className = 'msg error';
+        loginMsg.textContent = 'رمز عبور اشتباه است.';
+        return;
+      }
+
+      let token = localStorage.getItem('gh_token_portfolio');
+      if (!token) {
+        const inputToken = ghToken.value.trim();
+        if (!inputToken.startsWith('ghp_') && !inputToken.startsWith('github_pat_')) {
+          loginMsg.className = 'msg error';
+          loginMsg.textContent = 'لطفاً توکن گیت‌هاب معتبر را برای یک‌بار در کادر زیر وارد کنید.';
+          tokenSetupRow.classList.remove('hidden');
+          return;
+        }
+        localStorage.setItem('gh_token_portfolio', inputToken);
+      }
+
+      loginSection.classList.add('hidden');
+      adminSection.classList.remove('hidden');
+    });
+
+    // خروج
+    logoutBtn.addEventListener('click', () => {
+      adminPass.value = '';
+      adminSection.classList.add('hidden');
+      loginSection.classList.remove('hidden');
+    });
+
+    // تابع کمکی برای فراخوانی API گیت‌هاب
+    async function ghApi(path, options = {}) {
+      const token = localStorage.getItem('gh_token_portfolio');
+      const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/${path}`;
+      const headers = {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        ...options.headers
+      };
+      const res = await fetch(url, { ...options, headers });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || `خطا: ${res.status}`);
+      }
+      return res.json();
+    }
+
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = error => reject(error);
+      });
+    }
+
+    // ارسال اثر جدید
+    artworkForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      statusMsg.className = 'msg';
+      statusMsg.style.display = 'block';
+      statusMsg.textContent = 'در حال آپلود و ذخیره در گیت‌هاب... لطفاً چند لحظه صبر کنید.';
+
+      try {
+        const title = document.getElementById('title').value.trim();
+        const year = document.getElementById('year').value.trim();
+        const dimensions = document.getElementById('dimensions').value.trim();
+        const medium = document.getElementById('medium').value.trim();
+        const description = document.getElementById('description').value.trim();
+        const type = mediaType.value;
+
+        let mediaUrl = '';
+        let fileName = '';
+
+        if (type === 'video_link') {
+          mediaUrl = document.getElementById('videoUrl').value.trim();
+          if (!mediaUrl) throw new Error('لطفاً لینک یوتیوب را وارد کنید.');
+        } else {
+          const file = mediaFile.files[0];
+          if (!file) throw new Error('لطفاً فایل اثر را انتخاب کنید.');
+
+          const fileExt = file.name.split('.').pop();
+          const cleanName = title.toLowerCase().replace(/[^a-z0-9]/g, '-').slice(0, 30);
+          fileName = `uploads/${Date.now()}_${cleanName}.${fileExt}`;
+
+          const base64Content = await fileToBase64(file);
+
+          await ghApi(`contents/${fileName}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+              message: `Upload artwork asset: ${title}`,
+              content: base64Content
+            })
+          });
+
+          mediaUrl = fileName;
+        }
+
+        // دریافت یا ساخت فایل json اثرها
+        let existingSha = null;
+        let works = [];
+        try {
+          const jsonFile = await ghApi('contents/content/works.json');
+          existingSha = jsonFile.sha;
+          const decoded = decodeURIComponent(escape(atob(jsonFile.content)));
+          works = JSON.parse(decoded);
+        } catch (err) {
+          works = [];
+        }
+
+        const newWork = {
+          id: Date.now().toString(),
+          title,
+          year,
+          dimensions,
+          medium,
+          type: type === 'video_link' ? 'youtube' : (type === 'video_upload' ? 'video' : 'image'),
+          src: mediaUrl,
+          description
+        };
+
+        works.unshift(newWork);
+
+        const updatedJsonBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(works, null, 2))));
+        await ghApi('contents/content/works.json', {
           method: 'PUT',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
           body: JSON.stringify({
-            message: `Upload media: ${file.name}`,
-            content: b64
+            message: `Add artwork: ${title}`,
+            content: updatedJsonBase64,
+            ...(existingSha ? { sha: existingSha } : {})
           })
         });
 
-        if (!uploadRes.ok) throw new Error('Failed to upload file. Check your token permissions.');
-        mediaSrc = uploadPath;
+        statusMsg.className = 'msg success';
+        statusMsg.textContent = '✓ اثر با موفقیت منتشر شد! تا ۲ دقیقه دیگر در سایت نمایش داده می‌شود.';
+        artworkForm.reset();
+      } catch (err) {
+        statusMsg.className = 'msg error';
+        statusMsg.textContent = 'خطا در ثبت: ' + err.message;
+      } finally {
+        submitBtn.disabled = false;
       }
-
-      setStatus('Updating portfolio works list...', 'success');
-
-      // Fetch existing works.json or start empty
-      const existing = await getFileSha(WORKS_PATH);
-      let works = [];
-      let sha = undefined;
-
-      if (existing) {
-        sha = existing.sha;
-        try { works = JSON.parse(existing.content); } catch(err) { works = []; }
-      }
-
-      // Add new artwork to the top of the list
-      const newWork = {
-        id: Date.now(),
-        title: document.getElementById('title').value.trim(),
-        year: document.getElementById('year').value.trim(),
-        dimensions: document.getElementById('dimensions').value.trim(),
-        medium: document.getElementById('medium').value.trim(),
-        type: type,
-        src: mediaSrc,
-        description: document.getElementById('desc').value.trim()
-      };
-
-      works.unshift(newWork);
-
-      const updateRes = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${WORKS_PATH}`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: `Add artwork: ${newWork.title}`,
-          content: btoa(unescape(encodeURIComponent(JSON.stringify(works, null, 2)))),
-          sha: sha
-        })
-      });
-
-      if (!updateRes.ok) throw new Error('Failed to update catalog.');
-
-      setStatus('Artwork successfully published! It will appear on your homepage in a minute.', 'success');
-      artworkForm.reset();
-    } catch (err) {
-      setStatus(err.message, 'error');
-    } finally {
-      submitBtn.disabled = false;
-    }
-  });
-</script>
-
+    });
+  </script>
 </body>
 </html>
