@@ -1,21 +1,23 @@
 backend:
-  name: git-gateway
-  branch: main # یا master اگر شاخه اصلی تان master است
+  name: github
+  repo: soroorkheirollahi/soroorkheirollahi.github.io
+  branch: main
 
-# پوشه ذخیره عکس‌ها
-media_folder: "assets/images"
-public_folder: "/assets/images"
+media_folder: "uploads"
+public_folder: "/uploads"
 
 collections:
-  - name: "artworks"
-    label: "Artworks (آثار)"
-    folder: "content/artworks"
+  - name: "works"
+    label: "Artworks"
+    folder: "content"
     create: true
-    slug: "{{year}}-{{slug}}"
+    slug: "{{slug}}"
     fields:
-      - { label: "Artwork Title (عنوان اثر)", name: "title", widget: "string" }
-      - { label: "Medium / Technique (تکنیک)", name: "medium", widget: "string", default: "Oil on canvas" }
-      - { label: "Dimensions (ابعاد)", name: "dimensions", widget: "string", placeholder: "e.g. 100 x 80 cm" }
-      - { label: "Year (سال خلق)", name: "year", widget: "string" }
-      - { label: "Artwork Image (عکس اثر)", name: "image", widget: "image" }
-      - { label: "Description / Statement (توضیح اثر)", name: "body", widget: "markdown", required: false }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Year", name: "year", widget: "string", required: false}
+      - {label: "Medium", name: "medium", widget: "string", required: false}
+      - {label: "Dimensions", name: "dimensions", widget: "string", required: false}
+      - {label: "Media Type", name: "mediaType", widget: "select", options: ["image", "video", "youtube"], default: "image"}
+      - {label: "File or Image", name: "fileUrl", widget: "image", required: false}
+      - {label: "YouTube URL", name: "youtubeUrl", widget: "string", required: false}
+      - {label: "Artist Statement / Note", name: "statement", widget: "text", required: false}
