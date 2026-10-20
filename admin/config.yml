@@ -1,0 +1,21 @@
+backend:
+  name: git-gateway
+  branch: main # یا master اگر شاخه اصلی تان master است
+
+# پوشه ذخیره عکس‌ها
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "artworks"
+    label: "Artworks (آثار)"
+    folder: "content/artworks"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    fields:
+      - { label: "Artwork Title (عنوان اثر)", name: "title", widget: "string" }
+      - { label: "Medium / Technique (تکنیک)", name: "medium", widget: "string", default: "Oil on canvas" }
+      - { label: "Dimensions (ابعاد)", name: "dimensions", widget: "string", placeholder: "e.g. 100 x 80 cm" }
+      - { label: "Year (سال خلق)", name: "year", widget: "string" }
+      - { label: "Artwork Image (عکس اثر)", name: "image", widget: "image" }
+      - { label: "Description / Statement (توضیح اثر)", name: "body", widget: "markdown", required: false }
