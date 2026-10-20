@@ -1,216 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Soroor Kheirollahi — Visual Artist</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soroor Kheirollahi — Visual Artist & Painter</title>
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   
+  <!-- Netlify Identity (For Admin Login) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
   <style>
     :root {
       --bg: #ffffff;
-      --text: #1a1a1a;
+      --text: #121212;
       --muted: #737373;
-      --border: #eaeaea;
+      --border: #f0f0f0;
+      --font-main: 'Inter', -apple-system, sans-serif;
     }
+    
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-main);
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      padding: 40px 24px;
-      max-width: 1100px;
+      padding: 48px 32px;
+      max-width: 1240px;
       margin: 0 auto;
     }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
+      padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 24px;
-      margin-bottom: 48px;
+      margin-bottom: 56px;
     }
-    h1 {
-      font-size: 1.5rem;
-      letter-spacing: -0.02em;
+
+    .brand h1 {
+      font-size: 1.6rem;
+      letter-spacing: -0.03em;
       font-weight: 600;
+      text-transform: uppercase;
     }
+    .brand p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
     nav a {
       color: var(--muted);
       text-decoration: none;
-      margin-left: 20px;
-      font-size: 0.95rem;
+      margin-left: 24px;
+      font-size: 0.9rem;
       transition: color 0.2s;
     }
     nav a:hover { color: var(--text); }
-    
+    nav a.admin-link {
+      background: #f4f4f4;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    nav a.admin-link:hover { background: #000; color: #fff; }
+
     /* Gallery Grid */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 32px;
-      margin-bottom: 80px;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 48px;
+      margin-bottom: 96px;
     }
+
     .art-card {
       display: flex;
       flex-direction: column;
-    }
-    .art-card img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-      background-color: #f5f5f5;
-      cursor: pointer;
-      transition: opacity 0.2s ease;
-    }
-    .art-card img:hover { opacity: 0.9; }
-    .art-info {
-      margin-top: 12px;
-    }
-    .art-title {
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
-    .art-meta {
-      font-size: 0.85rem;
-      color: var(--muted);
+      background: #fff;
     }
 
-    /* Section Styling */
+    .img-container {
+      width: 100%;
+      height: 420px;
+      background-color: #f7f7f7;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .art-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .art-card img:hover {
+      transform: scale(1.02);
+    }
+
+    .art-details {
+      margin-top: 14px;
+    }
+    .art-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+    }
+    .art-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .art-desc {
+      font-size: 0.82rem;
+      color: #555;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    /* Sections */
     section {
       border-top: 1px solid var(--border);
-      padding-top: 48px;
-      margin-top: 48px;
+      padding-top: 56px;
+      margin-top: 64px;
     }
     h2 {
-      font-size: 1.25rem;
-      margin-bottom: 20px;
+      font-size: 1.15rem;
       font-weight: 600;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
-    .about-content, .cv-content {
-      max-width: 700px;
+    .content-box {
+      max-width: 680px;
+      font-size: 0.95rem;
       color: #333;
     }
+    .content-box p { margin-bottom: 16px; }
+
     .cv-item {
       margin-bottom: 16px;
+      font-size: 0.9rem;
     }
-    .cv-date {
-      font-size: 0.85rem;
+    .cv-year {
       color: var(--muted);
+      margin-right: 12px;
+      font-weight: 500;
     }
+
+    /* Modal for Full Image View */
+    #image-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.88);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+    }
+    #image-modal img {
+      max-width: 90%;
+      max-height: 90vh;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
     footer {
-      margin-top: 80px;
-      padding-top: 24px;
       border-top: 1px solid var(--border);
+      padding-top: 32px;
+      margin-top: 96px;
+      font-size: 0.8rem;
       color: var(--muted);
-      font-size: 0.85rem;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 24px 18px; }
+      header { flex-direction: column; gap: 16px; }
+      nav a { margin-left: 0; margin-right: 16px; }
+      .gallery-grid { grid-template-columns: 1fr; gap: 36px; }
+      .img-container { height: 320px; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Soroor Kheirollahi</h1>
+    <div class="brand">
+      <h1>Soroor Kheirollahi</h1>
+      <p>Visual Artist & Painter — Surrealism</p>
+    </div>
     <nav>
-      <a href="#works">Selected Works</a>
+      <a href="#portfolio">Selected Works</a>
       <a href="#about">About</a>
       <a href="#cv">CV</a>
       <a href="#contact">Contact</a>
+      <a href="/admin/" class="admin-link">Studio Login</a>
     </nav>
   </header>
 
   <main>
     <!-- Gallery -->
-    <section id="works" style="border-top: none; padding-top: 0; margin-top: 0;">
-      <div class="gallery-grid">
-        
-        <!-- Artwork Item 1 -->
+    <div id="portfolio">
+      <div class="gallery-grid" id="gallery">
+        <!-- Sample Initial Artwork -->
         <div class="art-card">
-          <img src="images/art1.jpg" alt="Artwork 1" onerror="this.src='https://via.placeholder.com/600x800?text=Artwork+1'">
-          <div class="art-info">
-            <div class="art-title">Untitled (Surreal Series)</div>
-            <div class="art-meta">Oil on Canvas, 100 × 80 cm, 2024</div>
+          <div class="img-container" onclick="openModal('soroor_photo.png')">
+            <img src="soroor_photo.png" alt="Artist Portrait / Studio Work" onerror="this.src='https://via.placeholder.com/600x800?text=Upload+Your+Artworks'">
+          </div>
+          <div class="art-details">
+            <div class="art-title">Artist Portrait & Vision</div>
+            <div class="art-meta">Visual Exploration — Mahshahr, Iran</div>
+            <div class="art-desc">To add new paintings with titles and dimensions, click on "Studio Login" in the top navigation menu.</div>
           </div>
         </div>
-
-        <!-- Artwork Item 2 -->
-        <div class="art-card">
-          <img src="images/art2.jpg" alt="Artwork 2" onerror="this.src='https://via.placeholder.com/600x800?text=Artwork+2'">
-          <div class="art-info">
-            <div class="art-title">Silence Within</div>
-            <div class="art-meta">Acrylic on Canvas, 120 × 90 cm, 2023</div>
-          </div>
-        </div>
-
-        <!-- Artwork Item 3 -->
-        <div class="art-card">
-          <img src="images/art3.jpg" alt="Artwork 3" onerror="this.src='https://via.placeholder.com/600x800?text=Artwork+3'">
-          <div class="art-info">
-            <div class="art-title">Metamorphosis</div>
-            <div class="art-meta">Mixed Media on Canvas, 80 × 80 cm, 2022</div>
-          </div>
-        </div>
-
       </div>
-    </section>
+    </div>
 
-    <!-- About -->
+    <!-- About / Statement -->
     <section id="about">
       <h2>About & Statement</h2>
-      <div class="about-content">
-        <p>Soroor Kheirollahi is a contemporary Iranian painter working within the visual language of Surrealism. Her paintings explore inner psychological landscapes, identity, and the poetic tension between memory and subconscious forms.</p>
-        <p style="margin-top: 12px;">She holds a Bachelor of Fine Arts (BFA) in Painting from Islamic Azad University, Abadan Branch, and currently lives and works in Mahshahr, Iran.</p>
+      <div class="content-box">
+        <p>Soroor Kheirollahi is an Iranian visual artist and painter specializing in Surrealism. Through psychological metaphors and subconscious imagery, her work explores internal identities, human emotion, and poetic transformations between reality and dream.</p>
+        <p>She received her Bachelor of Fine Arts (BFA) in Painting from Islamic Azad University, Abadan Branch (2014) and is an active member of the Khuzestan Visual Arts Association. She currently lives and works in Mahshahr, Iran.</p>
       </div>
     </section>
 
-    <!-- CV Overview -->
+    <!-- CV Section -->
     <section id="cv">
       <h2>Curriculum Vitae</h2>
-      <div class="cv-content">
-        <h3 style="font-size: 1rem; margin: 16px 0 10px;">Selected Exhibitions</h3>
-        <div class="cv-item">
-          <span class="cv-date">2025</span> — <em>Four Seasons of Art 4</em>, Pooneh Gallery, Ahvaz, Iran
-        </div>
-        <div class="cv-item">
-          <span class="cv-date">2024</span> — Recycling Art Festival, Mahshahr, Iran
-        </div>
-        <div class="cv-item">
-          <span class="cv-date">2020</span> — 12th Fajr International Festival of Visual Arts, Tehran, Iran
-        </div>
-        <div class="cv-item">
-          <span class="cv-date">2019</span> — <em>Hes</em> Group Exhibition, Ahvaz, Iran
-        </div>
-        <div class="cv-item">
-          <span class="cv-date">2019</span> — Environmental Art Exhibition, Persian Gulf Museum, Kish Island, Iran
-        </div>
+      <div class="content-box">
+        <h3 style="font-size: 0.95rem; margin: 24px 0 12px; color: #111;">Selected Exhibitions</h3>
+        <div class="cv-item"><span class="cv-year">2025</span> <em>Four Seasons of Art 4</em>, Pooneh Gallery, Ahvaz, Iran</div>
+        <div class="cv-item"><span class="cv-year">2024</span> Recycling Art Festival (Paper Category), Mahshahr, Iran</div>
+        <div class="cv-item"><span class="cv-year">2020</span> 12th Fajr International Festival of Visual Arts, Tehran, Iran</div>
+        <div class="cv-item"><span class="cv-year">2019</span> <em>Hes</em> Group Exhibition, Ahvaz, Iran</div>
+        <div class="cv-item"><span class="cv-year">2019</span> Environmental Art Exhibition, Persian Gulf Museum, Kish Island, Iran</div>
+        <div class="cv-item"><span class="cv-year">2017</span> <em>Ahvaz in Tehran</em>, Saba Cultural & Artistic Research Institute, Tehran, Iran</div>
+        <div class="cv-item"><span class="cv-year">2015</span> <em>Persian Blue</em>, Museum of Contemporary Art, Ahvaz, Iran</div>
+        <div class="cv-item"><span class="cv-year">2014</span> Group Exhibition, Gohar Gallery, Kharg, Iran</div>
 
-        <h3 style="font-size: 1rem; margin: 24px 0 10px;">Education</h3>
-        <div class="cv-item">
-          <span class="cv-date">2014</span> — Bachelor of Fine Arts (BFA) in Painting, Islamic Azad University, Abadan
-        </div>
+        <h3 style="font-size: 0.95rem; margin: 28px 0 12px; color: #111;">Education & Honors</h3>
+        <div class="cv-item"><span class="cv-year">2020</span> Selected Artist & Finalist, 12th Fajr International Festival of Visual Arts</div>
+        <div class="cv-item"><span class="cv-year">2014</span> Bachelor of Fine Arts (BFA) in Painting, Islamic Azad University, Abadan (GPA: 17.87/20.0)</div>
       </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Contact Section -->
     <section id="contact">
-      <h2>Contact</h2>
-      <div class="about-content">
-        <p>For inquiries, portfolio requests, or exhibition collaborations:</p>
-        <p style="margin-top: 8px;"><strong>Email:</strong> soroorkheyrollahi@gmail.com</p>
+      <h2>Contact & Inquiries</h2>
+      <div class="content-box">
+        <p>For exhibition collaborations, acquisitions, or inquiries:</p>
+        <p><strong>Email:</strong> <a href="mailto:soroorkheyrollahi@gmail.com" style="color: inherit;">soroorkheyrollahi@gmail.com</a></p>
         <p><strong>Location:</strong> Mahshahr, Khuzestan, Iran</p>
       </div>
     </section>
   </main>
 
+  <div id="image-modal" onclick="closeModal()">
+    <img id="modal-img" src="" alt="Full view">
+  </div>
+
   <footer>
     <div>&copy; 2026 Soroor Kheirollahi. All rights reserved.</div>
-    <div>Visual Artist Portfolio</div>
+    <div><a href="/admin/" style="color: inherit; text-decoration: none;">Studio Management &rarr;</a></div>
   </footer>
 
+  <script>
+    // Fullscreen Image Lightbox
+    function openModal(src) {
+      const modal = document.getElementById('image-modal');
+      const img = document.getElementById('modal-img');
+      img.src = src;
+      modal.style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('image-modal').style.display = 'none';
+    }
+
+    // Auto redirect to Admin when logged in
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
